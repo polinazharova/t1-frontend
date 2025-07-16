@@ -1,0 +1,1 @@
+export const priorityList = ['Low', 'Medium', 'High']
