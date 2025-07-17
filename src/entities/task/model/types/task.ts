@@ -13,4 +13,6 @@ export interface Task {
     title: string;
     description?: string;
     tags: Tags;
+    createdAt: Date;
+    updatedAt: Date;
 }

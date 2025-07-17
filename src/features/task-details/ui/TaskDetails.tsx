@@ -1,5 +1,5 @@
 import {FormEvent, useState} from "react";
-import {Tags, Task} from "../../../entities/task/model/types/task";
+import {Tags, Task} from "@entities/task/model/types/task";
 import {
     Box,
     Button,
@@ -7,15 +7,15 @@ import {
     TextField,
     Typography
 } from '@mui/material';
-import {priorityList} from "../../../widgets/task-list/model/const/priority";
-import {statusList} from "../../../widgets/task-list/model/const/status";
-import {categoryList} from "../../../widgets/task-list/model/const/category";
+import {priorityList} from "@widgets/task-list/model/const/priority";
+import {statusList} from "@widgets/task-list/model/const/status";
+import {categoryList} from "@widgets/task-list/model/const/category";
 import {useNavigate } from "react-router-dom";
-import {StyledFormControl} from "../../../shared/styled-form-control";
-import {StyledInputLabel} from "../../../shared/styled-input-label";
-import {StyledSelect} from "../../../shared/styled-select";
-import {StyledMenuItem} from "../../../shared/styled-menu-item";
-import {taskStore} from "../../../entities/task";
+import {StyledFormControl} from "@shared/styled-form-control";
+import {StyledInputLabel} from "@shared/styled-input-label";
+import {StyledSelect} from "@shared/styled-select";
+import {StyledMenuItem} from "@shared/styled-menu-item";
+import {taskStore} from "@entities/task";
 
 
 interface Props {

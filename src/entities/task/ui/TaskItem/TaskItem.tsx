@@ -1,5 +1,5 @@
 import styles from './TaskItem.module.css'
-import {Task} from '../../model/types/task.ts'
+import {Task} from '@entities/task'
 import {TaskTags} from "../TaskTags/TaskTags.tsx";
 import {Button, Card, CardActions, CardContent, CardHeader, Typography} from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';

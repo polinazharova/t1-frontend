@@ -1,4 +1,4 @@
-import {taskStore} from "./store/TaskStore";
+import {taskStore} from "@entities/task";
 import {Task} from "./types/task.ts";
 
 export const taskService = {

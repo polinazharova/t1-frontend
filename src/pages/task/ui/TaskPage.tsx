@@ -1,7 +1,7 @@
-import {TaskDetails} from "../../../features/task-details";
-import {taskStore} from "../../../entities/task";
+import {TaskDetails} from "@features/task-details";
+import {taskStore} from "@entities/task";
 import {useParams} from "react-router-dom";
-import {TypographyMainTitle} from "../../../shared/typography-main-title";
+import {TypographyMainTitle} from "@shared/typography-main-title";
 
 
 export const TaskPage = () => {

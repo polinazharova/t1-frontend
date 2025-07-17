@@ -1,6 +1,6 @@
 import './App.css'
-import {MainPage} from "../pages/main";
-import {TaskPage} from "../pages/task";
+import {MainPage} from "@/pages/main";
+import {TaskPage} from "@/pages/task";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 const App = () => {

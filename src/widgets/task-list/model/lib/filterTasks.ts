@@ -1,6 +1,6 @@
 import {Task} from "../../../../entities/task";
 
-export const filterTasks = (priority : string, category : string, status : string, tasks: Task[] | null) => {
+export const filterTasks = (priority : string, category : string, status : string, search: string, tasks: Task[] | null) => {
     if (!tasks) {
         return tasks;
     }
@@ -8,6 +8,7 @@ export const filterTasks = (priority : string, category : string, status : strin
     return tasks.filter(task => (
         (task.tags.priority === priority || priority === '') &&
         (task.tags.status === status || status === '') &&
-        (task.tags.category === category || category === '')
+        (task.tags.category === category || category === '') &&
+        (task.title.includes(search) || task.description?.includes(search) || search === '')
     ))
 }

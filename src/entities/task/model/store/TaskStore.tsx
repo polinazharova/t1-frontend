@@ -7,9 +7,14 @@ class TaskStore {
     status: string = '';
     priority: string = '';
     category: string = '';
+    search: string = '';
 
     constructor() {
         makeAutoObservable(this);
+    }
+
+    setSearch(search: string) {
+        this.search = search;
     }
 
     setStatus(status: string) {

@@ -1,4 +1,4 @@
-import {Task, TaskItem, taskStore} from "../../../entities/task";
+import {Task, TaskItem, taskStore} from "@/entities/task";
 import {useEffect, useState} from "react";
 import {filterTasks} from "../model/lib/filterTasks.ts";
 import Grid from '@mui/material/Grid';
@@ -8,12 +8,12 @@ interface Props {
 }
 
 export const TaskList = ({initTasks}: Props) => {
-    const {priority, status, category} = taskStore;
-    const [tasks, setTasks] = useState<Task[] | null>(filterTasks(priority, category, status, initTasks));
+    const {priority, status, category, search} = taskStore;
+    const [tasks, setTasks] = useState<Task[] | null>(filterTasks(priority, category, status, search, initTasks));
 
     useEffect(() => {
-        setTasks(filterTasks(priority, category, status, initTasks));
-    }, [priority, status, category, initTasks])
+        setTasks(filterTasks(priority, category, status, search, initTasks));
+    }, [priority, status, category, search, initTasks])
 
 
     return (
