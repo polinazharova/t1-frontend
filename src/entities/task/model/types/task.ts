@@ -1,7 +1,11 @@
+type Priority = 'Low' | 'Medium' | 'High';
+type Status = 'To Do' | 'In Progress' | 'Done';
+type Category = "Bug" | "Feature" | "Documentation" | "Refactor" | "Test";
+
 export interface Tags {
-    category: string;
-    status: string;
-    priority: string;
+    category: Category;
+    status: Status;
+    priority: Priority;
 }
 
 export interface Task {

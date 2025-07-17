@@ -1,12 +1,12 @@
 import {TaskDetails} from "../../../features/task-details";
-import {useTasks} from "../../../entities/task";
+import {taskStore} from "../../../entities/task";
 import {useParams} from "react-router-dom";
 import {TypographyMainTitle} from "../../../shared/typography-main-title";
 
 
 export const TaskPage = () => {
     const {id} = useParams();
-    const task = useTasks().tasks?.find((task) => task.id === Number(id));
+    const task = taskStore.tasks?.find((task) => task.id === Number(id));
 
     if (!task) {
         return null;

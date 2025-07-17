@@ -1,4 +1,6 @@
-export const mockTasks = [
+import {Task} from "../types/task.ts";
+
+export const mockTasks : Task[] = [
     {
         "id": 1,
         "title": "Implement user authentication",

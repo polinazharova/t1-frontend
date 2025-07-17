@@ -8,7 +8,7 @@ import {StyledMenuItem} from "../../../../shared/styled-menu-item";
 
 interface Props {
     category: string;
-    setCategory: React.Dispatch<React.SetStateAction<string>>;
+    setCategory: (status: string) => void;
 }
 
 export const CategoryFilter = ({category, setCategory} : Props) => {

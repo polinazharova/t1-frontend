@@ -7,7 +7,7 @@ import {StyledMenuItem} from "../../../../shared/styled-menu-item";
 
 interface Props {
     priority: string;
-    setPriority: React.Dispatch<React.SetStateAction<string>>;
+    setPriority: (status: string) => void;
 }
 
 export const PriorityFilter = ({priority, setPriority} : Props) => {

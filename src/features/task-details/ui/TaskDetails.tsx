@@ -11,11 +11,11 @@ import {priorityList} from "../../../widgets/task-list/model/const/priority";
 import {statusList} from "../../../widgets/task-list/model/const/status";
 import {categoryList} from "../../../widgets/task-list/model/const/category";
 import {useNavigate } from "react-router-dom";
-import {useTasks} from "../../../entities/task";
 import {StyledFormControl} from "../../../shared/styled-form-control";
 import {StyledInputLabel} from "../../../shared/styled-input-label";
 import {StyledSelect} from "../../../shared/styled-select";
 import {StyledMenuItem} from "../../../shared/styled-menu-item";
+import {taskStore} from "../../../entities/task";
 
 
 interface Props {
@@ -24,8 +24,6 @@ interface Props {
 
 
 export const TaskDetails = ({task} : Props) => {
-    const {editTask} = useTasks();
-
     const navigate = useNavigate();
 
     const [title, setTitle] = useState<string>(task.title);
@@ -41,13 +39,13 @@ export const TaskDetails = ({task} : Props) => {
 
     const onSubmit = (event : FormEvent) => {
         event.preventDefault();
-        const newTask = {
+        const updatedTask : Task = {
             id : task.id,
             title,
             description,
             tags,
         }
-        editTask(task.id, newTask);
+        taskStore.updateTask(updatedTask);
         navigate('/');
     }
 
