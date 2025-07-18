@@ -16,6 +16,7 @@ import {StyledInputLabel} from "@shared/styled-input-label";
 import {StyledSelect} from "@shared/styled-select";
 import {StyledMenuItem} from "@shared/styled-menu-item";
 import {taskStore} from "@entities/task";
+import {format} from "date-fns";
 
 
 interface Props {
@@ -44,6 +45,8 @@ export const TaskDetails = ({task} : Props) => {
             title,
             description,
             tags,
+            createdAt : task.createdAt,
+            updatedAt: format(new Date(), 'dd.MM.yyyy HH:mm'),
         }
         taskStore.updateTask(updatedTask);
         navigate('/');

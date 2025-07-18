@@ -1,18 +1,20 @@
 import {TaskList} from "@widgets/task-list";
-import {taskStore} from "@entities/task";
 import {TaskFilter} from "@features/task-filter";
 import {TypographyMainTitle} from "@shared/typography-main-title";
 import {TaskSearch} from "@features/task-search";
+import {Header} from "@widgets/header";
+import {observer} from "mobx-react-lite";
 
-export const MainPage = () => {
-    const tasks = taskStore.tasks;
-
+export const MainPage = observer(() => {
     return (
-        <main>
-            <TaskSearch />
-            <TaskFilter />
-            <TypographyMainTitle>TASKS</TypographyMainTitle>
-            <TaskList initTasks={tasks} />
-        </main>
+        <>
+            <Header/>
+            <main>
+                <TaskSearch/>
+                <TaskFilter/>
+                <TypographyMainTitle>TASKS</TypographyMainTitle>
+                <TaskList />
+            </main>
+        </>
     )
-}
+})

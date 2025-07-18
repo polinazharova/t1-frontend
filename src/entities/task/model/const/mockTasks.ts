@@ -1,6 +1,6 @@
-import {Task} from "../types/task.ts";
+import { Task } from "../types/task.ts";
 
-export const mockTasks : Task[] = [
+export const mockTasks: Task[] = [
     {
         "id": 1,
         "title": "Implement user authentication",
@@ -9,7 +9,9 @@ export const mockTasks : Task[] = [
             "category": "Feature",
             "status": "In Progress",
             "priority": "High"
-        }
+        },
+        "createdAt": "15.10.2023 09:30",
+        "updatedAt": "18.10.2023 14:45"
     },
     {
         "id": 2,
@@ -19,7 +21,9 @@ export const mockTasks : Task[] = [
             "category": "Documentation",
             "status": "To Do",
             "priority": "Medium"
-        }
+        },
+        "createdAt": "16.10.2023 11:20",
+        "updatedAt": "16.10.2023 11:20"
     },
     {
         "id": 3,
@@ -29,7 +33,9 @@ export const mockTasks : Task[] = [
             "category": "Bug",
             "status": "In Progress",
             "priority": "High"
-        }
+        },
+        "createdAt": "17.10.2023 13:15",
+        "updatedAt": "19.10.2023 10:30"
     },
     {
         "id": 4,
@@ -38,7 +44,9 @@ export const mockTasks : Task[] = [
             "category": "Feature",
             "status": "To Do",
             "priority": "Medium"
-        }
+        },
+        "createdAt": "18.10.2023 08:00",
+        "updatedAt": "18.10.2023 08:00"
     },
     {
         "id": 5,
@@ -48,7 +56,9 @@ export const mockTasks : Task[] = [
             "category": "Refactor",
             "status": "In Progress",
             "priority": "High"
-        }
+        },
+        "createdAt": "12.10.2023 10:45",
+        "updatedAt": "17.10.2023 16:20"
     },
     {
         "id": 6,
@@ -57,7 +67,9 @@ export const mockTasks : Task[] = [
             "category": "Feature",
             "status": "To Do",
             "priority": "Low"
-        }
+        },
+        "createdAt": "19.10.2023 09:10",
+        "updatedAt": "19.10.2023 09:10"
     },
     {
         "id": 7,
@@ -67,7 +79,9 @@ export const mockTasks : Task[] = [
             "category": "Refactor",
             "status": "Done",
             "priority": "Low"
-        }
+        },
+        "createdAt": "10.10.2023 14:30",
+        "updatedAt": "15.10.2023 11:45"
     },
     {
         "id": 8,
@@ -77,7 +91,9 @@ export const mockTasks : Task[] = [
             "category": "Test",
             "status": "In Progress",
             "priority": "Medium"
-        }
+        },
+        "createdAt": "14.10.2023 16:20",
+        "updatedAt": "18.10.2023 13:10"
     },
     {
         "id": 9,
@@ -86,7 +102,9 @@ export const mockTasks : Task[] = [
             "category": "Feature",
             "status": "To Do",
             "priority": "High"
-        }
+        },
+        "createdAt": "17.10.2023 15:00",
+        "updatedAt": "19.10.2023 09:30"
     },
     {
         "id": 10,
@@ -96,7 +114,9 @@ export const mockTasks : Task[] = [
             "category": "Bug",
             "status": "To Do",
             "priority": "Medium"
-        }
+        },
+        "createdAt": "19.10.2023 10:15",
+        "updatedAt": "19.10.2023 10:15"
     },
     {
         "id": 11,
@@ -105,7 +125,9 @@ export const mockTasks : Task[] = [
             "category": "Test",
             "status": "To Do",
             "priority": "Low"
-        }
+        },
+        "createdAt": "18.10.2023 14:00",
+        "updatedAt": "18.10.2023 14:00"
     },
     {
         "id": 12,
@@ -114,6 +136,8 @@ export const mockTasks : Task[] = [
             "category": "Documentation",
             "status": "Done",
             "priority": "Low"
-        }
+        },
+        "createdAt": "11.10.2023 13:45",
+        "updatedAt": "16.10.2023 12:30"
     }
-]
+];

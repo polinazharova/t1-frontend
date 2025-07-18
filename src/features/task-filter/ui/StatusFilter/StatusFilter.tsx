@@ -1,22 +1,20 @@
 import styles from './StatusFilter.module.css'
-import {statusList} from "../../../../widgets/task-list/model/const/status";
-import {StyledFormControl} from "../../../../shared/styled-form-control";
-import {StyledInputLabel} from "../../../../shared/styled-input-label";
-import {StyledSelect} from "../../../../shared/styled-select";
-import {StyledMenuItem} from "../../../../shared/styled-menu-item";
+import {statusList} from "@widgets/task-list/model/const/status";
+import {StyledFormControl} from "@shared/styled-form-control";
+import {StyledInputLabel} from "@shared/styled-input-label";
+import {StyledSelect} from "@shared/styled-select";
+import {StyledMenuItem} from "@shared/styled-menu-item";
+import {taskStore} from "@entities/task";
+import {observer} from "mobx-react-lite";
 
-interface Props {
-    status: string;
-    setStatus: (status: string) => void;
-}
 
-export const StatusFilter = ({status, setStatus} : Props) => {
+export const StatusFilter = observer(() => {
     return (
         <StyledFormControl className={styles['status-filter']}>
             <StyledInputLabel>Status</StyledInputLabel>
             <StyledSelect
-                value={status}
-                onChange={(e) => setStatus(e.target.value as string)}
+                value={taskStore.status}
+                onChange={(e) => taskStore.setStatus(e.target.value as string)}
                 label="Status"
             >
                 <StyledMenuItem value="">All statuses</StyledMenuItem>
@@ -28,4 +26,4 @@ export const StatusFilter = ({status, setStatus} : Props) => {
             </StyledSelect>
         </StyledFormControl>
     )
-}
+})

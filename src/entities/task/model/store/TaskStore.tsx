@@ -33,6 +33,10 @@ class TaskStore {
         this.tasks = mockTasks;
     }
 
+    addTask(task: Task) {
+        this.tasks.push(task);
+    }
+
     updateTask(updatedTask: Task) {
         const taskIndex = this.tasks.findIndex(task => task.id === updatedTask.id);
         if (taskIndex === -1) {

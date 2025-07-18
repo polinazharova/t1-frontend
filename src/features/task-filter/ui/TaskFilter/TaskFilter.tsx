@@ -4,32 +4,35 @@ import {StatusFilter} from "../StatusFilter/StatusFilter";
 import {CategoryFilter} from "../CategoryFilter/CategoryFilter";
 import {Box, Button, Stack} from "@mui/material";
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
-import {taskStore} from "../../../../entities/task";
+import {taskStore} from "@entities/task";
+import {SortButton} from "@features/task-filter/ui/Sort/Sort.tsx";
 
 export const TaskFilter = () => {
-    const {priority, setPriority, status, setStatus, category, setCategory} = taskStore;
-
     return (
         <div className={styles["task-filter"]}>
             <Stack
-                direction={{ xs: 'column', md: 'row' }}
+                direction={{xs: 'column', md: 'row'}}
                 spacing={2}
-                sx={{ mt: 2 }}
+                sx={{mt: 2}}
             >
-                <StatusFilter status={status} setStatus={setStatus}/>
-                <PriorityFilter priority={priority} setPriority={setPriority}/>
-                <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%'  }}>
-                    <CategoryFilter category={category} setCategory={setCategory} />
+                <Box sx={{display: 'flex', flexDirection: 'column', height: '100%'}}>
+                <StatusFilter/>
+                    //TODO СОРТИРОВКА
+                    <SortButton onSortChange={() => {}} />
+                </Box>
+                <PriorityFilter/>
+                <Box sx={{display: 'flex', flexDirection: 'column', height: '100%'}}>
+                    <CategoryFilter/>
                     <Button
                         onClick={() => {
-                            setStatus('');
-                            setPriority('');
-                            setCategory('');
+                            taskStore.setStatus('');
+                            taskStore.setPriority('');
+                            taskStore.setCategory('');
                         }}
                         variant="outlined"
                         color="primary"
-                        startIcon={<RestartAltIcon />}
-                        sx={{ mt: 1, alignSelf: 'flex-end' }}
+                        startIcon={<RestartAltIcon/>}
+                        sx={{mt: 1, alignSelf: 'flex-end'}}
                     >
                         Reset filters
                     </Button>

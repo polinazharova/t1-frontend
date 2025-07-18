@@ -1,6 +1,6 @@
-type Priority = 'Low' | 'Medium' | 'High';
-type Status = 'To Do' | 'In Progress' | 'Done';
-type Category = "Bug" | "Feature" | "Documentation" | "Refactor" | "Test";
+export type Priority = 'Low' | 'Medium' | 'High';
+export type Status = 'To Do' | 'In Progress' | 'Done';
+export type Category = "Bug" | "Feature" | "Documentation" | "Refactor" | "Test";
 
 export interface Tags {
     category: Category;
@@ -9,10 +9,10 @@ export interface Tags {
 }
 
 export interface Task {
-    id: number;
+    id: number | string;
     title: string;
     description?: string;
     tags: Tags;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 }

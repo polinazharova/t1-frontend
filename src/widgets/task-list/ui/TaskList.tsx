@@ -2,19 +2,16 @@ import {Task, TaskItem, taskStore} from "@/entities/task";
 import {useEffect, useState} from "react";
 import {filterTasks} from "../model/lib/filterTasks.ts";
 import Grid from '@mui/material/Grid';
+import {observer} from "mobx-react-lite";
+import {DeleteConfirmForm, DeleteTaskButton} from "@features/delete-task";
 
-interface Props {
-    initTasks: Task[] | null;
-}
 
-export const TaskList = ({initTasks}: Props) => {
-    const {priority, status, category, search} = taskStore;
-    const [tasks, setTasks] = useState<Task[] | null>(filterTasks(priority, category, status, search, initTasks));
+export const TaskList = observer(() => {
+    const [deletingTaskId, setDeletingTaskId] = useState<number | null>(null);
+    const [dialogOpen, setDialogOpen] = useState(false);
 
-    useEffect(() => {
-        setTasks(filterTasks(priority, category, status, search, initTasks));
-    }, [priority, status, category, search, initTasks])
-
+    const {priority, status, category, search, tasks} = taskStore;
+    const filteredTasks = filterTasks(priority, category, status, search, tasks);
 
     return (
         <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} sx={{
@@ -24,12 +21,13 @@ export const TaskList = ({initTasks}: Props) => {
                 pt: 1,
             }}>
             {
-                tasks?.map((task: Task) => (
+                filteredTasks?.map((task: Task) => (
                     <Grid key={task.id} size={{ xs: 12, sm: 6, md: 4 }}>
-                        <TaskItem task={task}/>
+                        <TaskItem task={task} actions={<DeleteTaskButton taskId={task.id} setDialogOpen={() => {setDialogOpen(true)}} setDeletingTaskId={setDeletingTaskId}/>} />
                     </Grid>
                 ))
             }
+            <DeleteConfirmForm open={dialogOpen} onClose={() => {setDialogOpen(false)}} onConfirm={() => {taskStore.deleteTask(deletingTaskId); setDialogOpen(false);}} />
         </Grid>
     )
-}
+})
