@@ -108,7 +108,6 @@ app.delete('/task/:id', async (req, res) => {
     try {
         const id = req.params.id;
 
-
         await client.del(`task:${id}`);
         await client.lRem(TASKS_LIST_KEY, 0, id);
 
@@ -119,5 +118,5 @@ app.delete('/task/:id', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
