@@ -1,1 +1,1 @@
-export {TaskPage} from './ui/TaskPage.tsx'
+export { TaskPage } from "./ui/TaskPage.tsx";

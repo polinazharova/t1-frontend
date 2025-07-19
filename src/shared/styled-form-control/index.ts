@@ -1,1 +1,1 @@
-export {StyledFormControl} from './ui/StyledFormControl'
+export { StyledFormControl } from "./ui/StyledFormControl";

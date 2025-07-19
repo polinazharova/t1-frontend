@@ -1,1 +1,1 @@
-export {StyledInputLabel} from './ui/StyledInputLabel'
+export { StyledInputLabel } from "./ui/StyledInputLabel";

@@ -1,3 +1,3 @@
-import {Status} from "@entities/task";
+import { Status } from "@entities/task";
 
-export const statusList : Status[] = ['To Do', 'In Progress', 'Done'];
+export const statusList: Status[] = ["To Do", "In Progress", "Done"];

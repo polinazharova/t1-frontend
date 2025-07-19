@@ -1,19 +1,19 @@
 .task {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    width: 100%;
+  width: 100%;
 }
 
 .card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    box-sizing: border-box;
-    padding: 0 30%;
-    width: 100%;
+  box-sizing: border-box;
+  padding: 0 30%;
+  width: 100%;
 }

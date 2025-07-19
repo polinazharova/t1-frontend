@@ -4,23 +4,38 @@
   font-weight: 400;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 /* Убираем отступы */
-body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
   margin: 0;
   padding: 0;
 }
 
 /* Убираем списочные стили */
-ul[role='list'], ol[role='list'] {
+ul[role="list"],
+ol[role="list"] {
   list-style: none;
 }
 
 /* Убираем отступы у ul/ol по умолчанию */
-ul, ol {
+ul,
+ol {
   margin: 0;
   padding: 0;
 }
@@ -32,7 +47,10 @@ a {
 }
 
 /* Убираем стандартное оформление кнопок/инпутов */
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font: inherit;
   margin: 0;
   padding: 0;
@@ -43,13 +61,15 @@ button, input, select, textarea {
 }
 
 /* Убираем стили у картинок */
-img, picture {
+img,
+picture {
   max-width: 100%;
   display: block;
 }
 
 /* Устанавливаем базовые значения */
-html, body {
+html,
+body {
   height: 100%;
   scroll-behavior: smooth;
   line-height: 1.5;
@@ -62,17 +82,23 @@ address {
 }
 
 /* Удаляем quote-стили */
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 
-blockquote::before, blockquote::after,
-q::before, q::after {
-  content: '';
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: "";
 }
 
 /* Настраиваем формы */
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 

@@ -1,1 +1,1 @@
-export {TypographyMainTitle} from './ui/TypographyMainTitle'
+export { TypographyMainTitle } from "./ui/TypographyMainTitle";

@@ -1,1 +1,1 @@
-export {apiService} from './api.ts'
+export { apiService } from "./api.ts";

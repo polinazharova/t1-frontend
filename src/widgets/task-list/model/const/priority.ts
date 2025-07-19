@@ -1,3 +1,3 @@
-import {Priority} from "@entities/task";
+import { Priority } from "@entities/task";
 
-export const priorityList : Priority[] = ['Low', 'Medium', 'High']
+export const priorityList: Priority[] = ["Low", "Medium", "High"];

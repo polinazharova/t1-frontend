@@ -1,1 +1,1 @@
-export {StyledSelect} from './ui/StyledSelect'
+export { StyledSelect } from "./ui/StyledSelect";

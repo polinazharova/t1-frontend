@@ -1,1 +1,1 @@
-export {StyledMenuItem} from './ui/StyledMenuItem';
+export { StyledMenuItem } from "./ui/StyledMenuItem";

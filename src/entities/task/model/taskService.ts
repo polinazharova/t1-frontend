@@ -1,68 +1,68 @@
-import {taskStore} from "@entities/task";
-import {Task} from "./types/task.ts";
-import {taskApi} from "@entities/task/model/api/taskApi.ts";
+import { taskStore } from "@entities/task";
+import { Task } from "./types/task.ts";
+import { taskApi } from "@entities/task/model/api/taskApi.ts";
 
 export const taskService = {
+  setTask(task: Task) {
+    taskStore.setTask(task);
+  },
 
-    setTask(task: Task) {
-        taskStore.setTask(task);
-    },
+  async getTasks() {
+    try {
+      taskStore.setLoading("loading");
+      taskStore.setError("");
 
-    async getTasks() {
-        try {
-            taskStore.setLoading("loading");
-            taskStore.setError("");
+      const tasks = await taskApi.getTasks();
+      taskStore.setTasks(tasks);
+      taskStore.setLoading("idle");
+    } catch (error) {
+      taskStore.setError(error as string);
+      taskStore.setLoading("idle");
+      console.log(error);
+    }
+  },
 
-            const tasks = await taskApi.getTasks();
-            taskStore.setTasks(tasks);
-            taskStore.setLoading("idle");
-        } catch (error) {
-            taskStore.setError(error as string);
-            taskStore.setLoading("idle");
-            console.log(error);
-        }
-    },
+  async getTask(id: string) {
+    try {
+      taskStore.setLoading("loading");
+      taskStore.setError("");
 
-    async getTask(id: string) {
-        try {
-            taskStore.setLoading("loading");
-            taskStore.setError("");
+      const task = await taskApi.getTask(id);
+      taskStore.setTask(task);
+      taskStore.setLoading("idle");
+    } catch (error) {
+      taskStore.setError(error as string);
+      taskStore.setLoading("idle");
+      console.log(error);
+    }
+  },
 
-            const task = await taskApi.getTask(id);
-            taskStore.setTask(task);
-            taskStore.setLoading("idle");
-        } catch (error) {
-            taskStore.setError(error as string); taskStore.setLoading("idle");
-            console.log(error);
-        }
-    },
+  async deleteTask(taskId: string) {
+    try {
+      await taskApi.deleteTask(taskId);
+      taskStore.deleteTask(taskId);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 
-    async deleteTask(taskId : string) {
-        try {
-            await taskApi.deleteTask(taskId);
-            taskStore.deleteTask(taskId);
-        } catch (error) {
-            console.log(error);
-        }
-    },
+  async addTask(task: Task) {
+    try {
+      const newId = (await taskApi.addTask(task)).id;
+      task.id = newId;
 
-    async addTask(task: Task) {
-        try {
-            const newId = (await taskApi.addTask(task)).id;
-            task.id = newId;
+      taskStore.addTask(task);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 
-            taskStore.addTask(task);
-        } catch (error) {
-            console.log(error);
-        }
-    },
-
-    async updateTask(id : string, updatedTask : Task) {
-        try {
-            await taskApi.updateTask(id, updatedTask);
-            taskStore.updateTask(updatedTask);
-        } catch (error) {
-            console.log(error);
-        }
-    },
-}
+  async updateTask(id: string, updatedTask: Task) {
+    try {
+      await taskApi.updateTask(id, updatedTask);
+      taskStore.updateTask(updatedTask);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+};
