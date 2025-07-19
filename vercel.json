@@ -1,11 +1,7 @@
 {
   "functions": {
-    "server/api/**/*.js": {
+    "/api/**/*.js": {
       "runtime": "vercel-node@20.0.0"
     }
-  },
-  "outputDirectory": "server",
-  "routes": [
-    { "src": "/api/(.*)", "dest": "api/$1.js" }
-  ]
+  }
 }
