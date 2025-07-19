@@ -33,7 +33,7 @@ app.use(cors());
 app.use(express.json());
 
 // GET /tasks
-app.get('/tasks', async (req, res) => {
+app.get('/api/tasks', async (req, res) => {
     try {
         const taskIds = await client.lRange(TASKS_LIST_KEY, 0, -1);
         const tasks = await Promise.all(
@@ -52,7 +52,7 @@ app.get('/tasks', async (req, res) => {
 });
 
 // GET /task/:id
-app.get('/task/:id', async (req, res) => {
+app.get('/api/task/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const taskJSON = await client.get(`task:${id}`);
@@ -68,7 +68,7 @@ app.get('/task/:id', async (req, res) => {
 });
 
 // POST /tasks
-app.post('/tasks', async (req, res) => {
+app.post('/api/tasks', async (req, res) => {
     try {
         const newTask = req.body;
         const id = nanoid(10);
@@ -87,7 +87,7 @@ app.post('/tasks', async (req, res) => {
 });
 
 // PUT /task/:id
-app.put('/task/:id', async (req, res) => {
+app.put('/api/task/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const taskJSON = await client.get(`task:${id}`);
@@ -104,7 +104,7 @@ app.put('/task/:id', async (req, res) => {
 });
 
 // DELETE /task/:id
-app.delete('/task/:id', async (req, res) => {
+app.delete('/api/task/:id', async (req, res) => {
     try {
         const id = req.params.id;
 
