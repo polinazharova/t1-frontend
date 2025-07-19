@@ -3,13 +3,13 @@ import { Button } from '@mui/material';
 import {Dispatch, SetStateAction} from "react";
 
 interface Props {
-    taskId: number;
+    taskId: number | string;
     setDialogOpen: (modalOpen: boolean) => void;
-    setDeletingTaskId: Dispatch<SetStateAction<number | null>>;
+    setDeletingTaskId: Dispatch<SetStateAction<number | string | null>>;
 }
 
 export const DeleteTaskButton = ({ taskId, setDialogOpen, setDeletingTaskId }: Props) => {
-    const onClick = (event) => {
+    const onClick = (event : React.MouseEvent) => {
         event.stopPropagation();
         setDeletingTaskId(taskId);
         setDialogOpen(true);

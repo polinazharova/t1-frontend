@@ -1,13 +1,14 @@
-import { useState } from 'react';
 import { IconButton, Tooltip } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import {taskStore} from "@entities/task";
+import {observer} from "mobx-react-lite";
 
-export const SortButton = () => {
-    const [isDescending, setIsDescending] = useState(true);
+export const DateSortButton = observer(() => {
+    const isDescending = taskStore.isDescending;
 
     const handleSort = () => {
-        setIsDescending(!isDescending);
+        taskStore.setIsDescending(!isDescending);
     };
 
     return (
@@ -17,4 +18,4 @@ export const SortButton = () => {
             </IconButton>
         </Tooltip>
     );
-};
+});

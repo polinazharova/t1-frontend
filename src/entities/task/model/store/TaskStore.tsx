@@ -8,9 +8,14 @@ class TaskStore {
     priority: string = '';
     category: string = '';
     search: string = '';
+    isDescending = true;
 
     constructor() {
         makeAutoObservable(this);
+    }
+
+    setIsDescending(isDescending: boolean) {
+        this.isDescending = isDescending;
     }
 
     setSearch(search: string) {
@@ -49,7 +54,7 @@ class TaskStore {
             ...this.tasks.slice(taskIndex + 1)];
     }
 
-    deleteTask(taskId: number) {
+    deleteTask(taskId: number | string) {
         this.tasks = this.tasks.filter(task => task.id !== taskId);
     }
 }

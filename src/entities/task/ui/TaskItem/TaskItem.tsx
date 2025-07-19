@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import {useLocation, useNavigate} from "react-router-dom";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import UpdateIcon from '@mui/icons-material/Update';
+import {format} from "date-fns";
 
 interface Props {
     task: Task;
@@ -77,14 +78,14 @@ export const TaskItem = ({task, actions}: Props) => {
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     <AccessTimeIcon fontSize="small" color="disabled" />
                     <Typography variant="caption" color="text.secondary" sx={{fontSize: '10px'}}>
-                        Created: {task.createdAt}
+                        Created: {format(task.createdAt, 'dd.MM.yyyy HH:mm')}
                     </Typography>
                 </Box>
 
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     <UpdateIcon fontSize="small" color="disabled" />
                     <Typography variant="caption" color="text.secondary" sx={{fontSize: '10px'}}>
-                        Updated: {task.updatedAt}
+                        Updated: {format(task.updatedAt, 'dd.MM.yyyy HH:mm')}
                     </Typography>
                 </Box>
             </Box>

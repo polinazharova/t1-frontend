@@ -5,7 +5,7 @@ import {CategoryFilter} from "../CategoryFilter/CategoryFilter";
 import {Box, Button, Stack} from "@mui/material";
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import {taskStore} from "@entities/task";
-import {SortButton} from "@features/task-filter/ui/Sort/Sort.tsx";
+import {DateSortButton} from "@features/task-filter/ui/DateSortButton/DateSortButton.tsx";
 
 export const TaskFilter = () => {
     return (
@@ -15,29 +15,33 @@ export const TaskFilter = () => {
                 spacing={2}
                 sx={{mt: 2}}
             >
-                <Box sx={{display: 'flex', flexDirection: 'column', height: '100%'}}>
                 <StatusFilter/>
-                    //TODO СОРТИРОВКА
-                    <SortButton onSortChange={() => {}} />
-                </Box>
                 <PriorityFilter/>
-                <Box sx={{display: 'flex', flexDirection: 'column', height: '100%'}}>
-                    <CategoryFilter/>
-                    <Button
-                        onClick={() => {
-                            taskStore.setStatus('');
-                            taskStore.setPriority('');
-                            taskStore.setCategory('');
-                        }}
-                        variant="outlined"
-                        color="primary"
-                        startIcon={<RestartAltIcon/>}
-                        sx={{mt: 1, alignSelf: 'flex-end'}}
-                    >
-                        Reset filters
-                    </Button>
-                </Box>
+                <CategoryFilter/>
             </Stack>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    mt: 2,
+                    width: '75%',
+                }}>
+                <DateSortButton/>
+                <Button
+                    onClick={() => {
+                        taskStore.setStatus('');
+                        taskStore.setPriority('');
+                        taskStore.setCategory('');
+                        taskStore.setIsDescending(true);
+                    }}
+                    variant="outlined"
+                    color="primary"
+                    startIcon={<RestartAltIcon/>}
+                >
+                    Reset filters
+                </Button>
+            </Box>
         </div>
     )
 }

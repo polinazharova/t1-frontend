@@ -17,7 +17,6 @@ import {priorityList} from "@widgets/task-list/model/const/priority.ts";
 import {StyledMenuItem} from "@shared/styled-menu-item";
 import {statusList} from "@widgets/task-list/model/const/status.ts";
 import {categoryList} from "@widgets/task-list/model/const/category.ts";
-import {format} from "date-fns";
 import {useParams} from "react-router-dom";
 import TitleIcon from '@mui/icons-material/Title';
 import SubjectIcon from '@mui/icons-material/Subject';
@@ -54,8 +53,8 @@ export const TaskForm = ({onClickCancel}: Props) => {
         const finalTask: Task = {
             ...newTask,
             id: task?.id || nanoid(10),
-            createdAt: task?.createdAt || format(new Date(), 'dd.MM.yyyy HH:mm'),
-            updatedAt: format(new Date(), 'dd.MM.yyyy HH:mm'),
+            createdAt: task?.createdAt || new Date(),
+            updatedAt: new Date(),
         };
         if (task) {
             taskStore.updateTask(finalTask);
