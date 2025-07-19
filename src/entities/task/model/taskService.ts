@@ -1,28 +1,68 @@
 import {taskStore} from "@entities/task";
 import {Task} from "./types/task.ts";
+import {taskApi} from "@entities/task/model/api/taskApi.ts";
 
 export const taskService = {
-    getTasks() {
-        taskStore.getTasks();
-        //ZAPROS K API
+
+    setTask(task: Task) {
+        taskStore.setTask(task);
     },
 
-    deleteTask(taskId : number) {
-        taskStore.deleteTask(taskId);
-        //ZAPROS K API
+    async getTasks() {
+        try {
+            taskStore.setLoading("loading");
+            taskStore.setError("");
+
+            const tasks = await taskApi.getTasks();
+            taskStore.setTasks(tasks);
+            taskStore.setLoading("idle");
+        } catch (error) {
+            taskStore.setError(error as string);
+            taskStore.setLoading("idle");
+            console.log(error);
+        }
     },
 
-    addTask(task: Task) {
-        taskStore.addTask(task);
-        //ZAPROS K API
+    async getTask(id: string) {
+        try {
+            taskStore.setLoading("loading");
+            taskStore.setError("");
+
+            const task = await taskApi.getTask(id);
+            taskStore.setTask(task);
+            taskStore.setLoading("idle");
+        } catch (error) {
+            taskStore.setError(error as string); taskStore.setLoading("idle");
+            console.log(error);
+        }
     },
 
-    updateFullTask(updatedTask : Task) {
-        taskStore.updateTask(updatedTask);
-        //ZAPROS K API
+    async deleteTask(taskId : string) {
+        try {
+            await taskApi.deleteTask(taskId);
+            taskStore.deleteTask(taskId);
+        } catch (error) {
+            console.log(error);
+        }
     },
 
-    updateTask(updatedTask : Task) {
-        //ZAPROS K API
-    }
+    async addTask(task: Task) {
+        try {
+            const newId = (await taskApi.addTask(task)).id;
+            task.id = newId;
+
+            taskStore.addTask(task);
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    async updateTask(id : string, updatedTask : Task) {
+        try {
+            await taskApi.updateTask(id, updatedTask);
+            taskStore.updateTask(updatedTask);
+        } catch (error) {
+            console.log(error);
+        }
+    },
 }

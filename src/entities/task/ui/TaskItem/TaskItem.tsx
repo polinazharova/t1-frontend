@@ -21,7 +21,7 @@ export const TaskItem = ({task, actions}: Props) => {
         navigate(`/task/${task.id}`);
     }
 
-    const onClickEdit = (event) => {
+    const onClickEdit = (event : React.MouseEvent) => {
         event.stopPropagation();
         navigate(`/update/${task.id}`, { state: { background: location } });
     };

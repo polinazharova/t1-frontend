@@ -1,4 +1,4 @@
-import {FormEvent, useState} from "react";
+import {FormEvent } from "react";
 import {Tags, Task} from "@entities/task/model/types/task";
 import {
     Box,
@@ -15,39 +15,36 @@ import {StyledFormControl} from "@shared/styled-form-control";
 import {StyledInputLabel} from "@shared/styled-input-label";
 import {StyledSelect} from "@shared/styled-select";
 import {StyledMenuItem} from "@shared/styled-menu-item";
-import {taskStore} from "@entities/task";
+import {taskService, taskStore} from "@entities/task";
+import {observer} from "mobx-react-lite";
 
 
-interface Props {
-    task: Task;
-}
-
-
-export const TaskDetails = ({task} : Props) => {
+export const TaskDetails = observer(() => {
     const navigate = useNavigate();
+    const task = taskStore.task;
 
-    const [title, setTitle] = useState<string>(task.title);
-    const [description, setDescription] = useState<string>(task.description || '');
-    const [tags, setTags] = useState<Tags>(task.tags);
+    if (!task) {
+        return null;
+    }
 
     const handleTagChange = (event : SelectChangeEvent<unknown>, tagType: keyof Tags) => {
-        setTags(prev => ({
-            ...prev,
-            [tagType]: event.target.value as string,
-        }));
+        taskService.setTask({
+            ...task,
+            tags: {...task.tags, [tagType]: event.target.value as string},
+        });
     };
 
     const onSubmit = (event : FormEvent) => {
         event.preventDefault();
         const updatedTask : Task = {
             id : task.id,
-            title,
-            description,
-            tags,
+            title : task.title,
+            description: task.description,
+            tags: task.tags,
             createdAt : task.createdAt,
             updatedAt: new Date(),
         }
-        taskStore.updateTask(updatedTask);
+        taskService.updateTask(updatedTask.id, updatedTask);
         onClickCancel();
     }
 
@@ -60,8 +57,8 @@ export const TaskDetails = ({task} : Props) => {
                 variant="outlined"
                 fullWidth
                 required
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={task.title}
+                onChange={(e) => taskService.setTask({...task, title: e.target.value})}
                 sx={{ mb: 3 }}
             />
 
@@ -71,8 +68,8 @@ export const TaskDetails = ({task} : Props) => {
                 fullWidth
                 multiline
                 rows={4}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={task?.description || ""}
+                onChange={(e) => taskService.setTask({...task, description: e.target.value})}
                 sx={{ mb: 3 }}
             />
 
@@ -84,7 +81,7 @@ export const TaskDetails = ({task} : Props) => {
                 <StyledFormControl sx={{ minWidth: 200 }}>
                     <StyledInputLabel>Category</StyledInputLabel>
                     <StyledSelect
-                        value={tags.category}
+                        value={task.tags.category}
                         onChange={(event) => {handleTagChange(event, 'category')}}
                         input={<OutlinedInput label="Category" />}
                     >
@@ -99,7 +96,7 @@ export const TaskDetails = ({task} : Props) => {
                 <StyledFormControl sx={{ minWidth: 200 }}>
                     <StyledInputLabel>Status</StyledInputLabel>
                     <StyledSelect
-                        value={tags.status}
+                        value={task.tags.status}
                         onChange={(event) => {handleTagChange(event, 'status')}}
                         input={<OutlinedInput label="Status" />}
                     >
@@ -114,7 +111,7 @@ export const TaskDetails = ({task} : Props) => {
                 <StyledFormControl sx={{ minWidth: 200 }}>
                     <StyledInputLabel>Priority</StyledInputLabel>
                     <StyledSelect
-                        value={tags.priority}
+                        value={task.tags.priority}
                         onChange={(event) => {handleTagChange(event, 'priority')}}
                         input={<OutlinedInput label="Priority" />}
                     >
@@ -135,11 +132,11 @@ export const TaskDetails = ({task} : Props) => {
                     type="submit"
                     variant="contained"
                     size="large"
-                    disabled={!title || !tags.category || !tags.status || !tags.priority}
+                    disabled={!task.title}
                 >
                     Save
                 </Button>
             </Box>
         </Box>
     )
-}
+})

@@ -1,17 +1,36 @@
 import { makeAutoObservable } from "mobx";
 import {Task} from "../types/task.ts";
-import {mockTasks} from "../const/mockTasks.ts";
+import {taskApi} from "@entities/task/model/api/taskApi.ts";
 
 class TaskStore {
-    tasks: Task[] = mockTasks;
+    tasks: Task[] = [];
+    task: Task | null = null;
     status: string = '';
     priority: string = '';
     category: string = '';
     search: string = '';
+    loading: "idle" | "loading" = "idle";
+    error: string = "";
     isDescending = true;
 
     constructor() {
         makeAutoObservable(this);
+    }
+
+    setLoading(loading: "idle" | "loading") {
+        this.loading = loading;
+    }
+
+    setError(error: string) {
+        this.error = error;
+    }
+
+    setTask(task: Task) {
+        this.task = task;
+    }
+
+    setTasks(tasks: Task[]) {
+        this.tasks = tasks;
     }
 
     setIsDescending(isDescending: boolean) {
@@ -34,8 +53,13 @@ class TaskStore {
         this.category = category;
     }
 
-    getTasks() {
-        this.tasks = mockTasks;
+    async getTasks() {
+        try {
+            const tasks = await taskApi.getTasks();
+            taskStore.setTasks(tasks);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     addTask(task: Task) {
@@ -54,7 +78,7 @@ class TaskStore {
             ...this.tasks.slice(taskIndex + 1)];
     }
 
-    deleteTask(taskId: number | string) {
+    deleteTask(taskId: string) {
         this.tasks = this.tasks.filter(task => task.id !== taskId);
     }
 }

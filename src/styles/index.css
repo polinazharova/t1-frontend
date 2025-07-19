@@ -4,3 +4,80 @@
   font-weight: 400;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Убираем отступы */
+body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+/* Убираем списочные стили */
+ul[role='list'], ol[role='list'] {
+  list-style: none;
+}
+
+/* Убираем отступы у ul/ol по умолчанию */
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+/* Убираем стили ссылок */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Убираем стандартное оформление кнопок/инпутов */
+button, input, select, textarea {
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  outline: none;
+}
+
+/* Убираем стили у картинок */
+img, picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Устанавливаем базовые значения */
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Убираем курсив у address */
+address {
+  font-style: normal;
+}
+
+/* Удаляем quote-стили */
+blockquote, q {
+  quotes: none;
+}
+
+blockquote::before, blockquote::after,
+q::before, q::after {
+  content: '';
+}
+
+/* Настраиваем формы */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* Убираем стили у таблиц */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}

@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
-import {Task, taskStore} from "@entities/task";
+import {Task, taskService, taskStore} from "@entities/task";
 import {TypographyMainTitle} from "@shared/typography-main-title";
 import {StyledTextField} from "@shared/styled-textfield";
 import {StyledInputLabel} from "@shared/styled-input-label";
@@ -57,9 +57,9 @@ export const TaskForm = ({onClickCancel}: Props) => {
             updatedAt: new Date(),
         };
         if (task) {
-            taskStore.updateTask(finalTask);
+            taskService.updateTask(finalTask.id, finalTask);
         } else {
-            taskStore.addTask(finalTask);
+            taskService.addTask(finalTask);
         }
         onClickCancel();
     };

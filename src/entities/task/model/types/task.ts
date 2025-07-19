@@ -9,7 +9,7 @@ export interface Tags {
 }
 
 export interface Task {
-    id: number | string;
+    id: string;
     title: string;
     description?: string;
     tags: Tags;
