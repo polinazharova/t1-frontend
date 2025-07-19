@@ -1,7 +1,4 @@
 {
-  "projectSettings": {
-    "framework": null
-  },
   "functions": {
     "server/api/**/*.js": {
       "runtime": "nodejs20.x"
