@@ -16,9 +16,12 @@ export const taskService = {
       taskStore.setTasks(tasks);
       taskStore.setLoading("idle");
     } catch (error) {
-      taskStore.setError(error as string);
+      if (error instanceof Error) {
+        taskStore.setError(error.message);
+      } else {
+        taskStore.setError(error as string);
+      }
       taskStore.setLoading("idle");
-      console.log(error);
     }
   },
 
@@ -31,9 +34,12 @@ export const taskService = {
       taskStore.setTask(task);
       taskStore.setLoading("idle");
     } catch (error) {
-      taskStore.setError(error as string);
+      if (error instanceof Error) {
+        taskStore.setError(error.message);
+      } else {
+        taskStore.setError(error as string);
+      }
       taskStore.setLoading("idle");
-      console.log(error);
     }
   },
 

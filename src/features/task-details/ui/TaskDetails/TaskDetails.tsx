@@ -18,13 +18,23 @@ import { StyledSelect } from "@shared/styled-select";
 import { StyledMenuItem } from "@shared/styled-menu-item";
 import { taskService, taskStore } from "@entities/task";
 import { observer } from "mobx-react-lite";
+import { TaskDetailsSkeleton } from "../TaskDetailsSkeleton/TaskDetailsSkeleton";
+import { InfoMessage } from "@shared/info-message";
 
 export const TaskDetails = observer(() => {
   const navigate = useNavigate();
-  const task = taskStore.task;
+  const { task, error, loading } = taskStore;
+
+  if (loading === "loading") {
+    return <TaskDetailsSkeleton />;
+  }
+
+  if (error) {
+    return <InfoMessage color="error">{error}</InfoMessage>;
+  }
 
   if (!task) {
-    return null;
+    return <InfoMessage color="error">Something went wrong</InfoMessage>;
   }
 
   const handleTagChange = (

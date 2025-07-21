@@ -4,7 +4,9 @@ export const apiService = {
   async get<T>(url: string): Promise<T> {
     const response = await fetch(`${this.BASE_URL}${url}`);
     if (!response.ok) {
-      throw new Error(response.statusText);
+      throw new Error(
+        `An error ${response.status} occurred while retrieving data`,
+      );
     }
     return response.json();
   },
@@ -19,9 +21,11 @@ export const apiService = {
     });
 
     if (!response.ok) {
-      throw new Error(response.statusText);
+      throw new Error(
+        `An error ${response.status} occurred while sending data`,
+      );
     }
-    return await response.json();
+    return response.json();
   },
 
   async put<T>(url: string, body: any): Promise<T> {
@@ -34,9 +38,11 @@ export const apiService = {
     });
 
     if (!response.ok) {
-      throw new Error(response.statusText);
+      throw new Error(
+        `An error ${response.status} occurred while updating data`,
+      );
     }
-    return await response.json();
+    return response.json();
   },
 
   async patch<T>(url: string, body: any): Promise<T> {
@@ -48,8 +54,12 @@ export const apiService = {
       body: JSON.stringify(body),
     });
 
-    if (!response.ok) throw new Error("Ошибка при частичном обновлении");
-    return await response.json();
+    if (!response.ok) {
+      throw new Error(
+        `An error ${response.status} occurred while updating data`,
+      );
+    }
+    return response.json();
   },
 
   async delete<T>(url: string): Promise<T> {
@@ -57,7 +67,12 @@ export const apiService = {
       method: "DELETE",
     });
 
-    if (!response.ok) throw new Error("Ошибка при частичном обновлении");
+    if (!response.ok) {
+      throw new Error(
+        `An error ${response.status} occurred while deleting data`,
+      );
+    }
+
     return true as T;
   },
 };

@@ -1,6 +1,5 @@
 import { makeAutoObservable } from "mobx";
 import { Task } from "../types/task.ts";
-import { taskApi } from "@entities/task/model/api/taskApi.ts";
 
 class TaskStore {
   tasks: Task[] = [];
@@ -51,15 +50,6 @@ class TaskStore {
 
   setCategory(category: string) {
     this.category = category;
-  }
-
-  async getTasks() {
-    try {
-      const tasks = await taskApi.getTasks();
-      taskStore.setTasks(tasks);
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   addTask(task: Task) {

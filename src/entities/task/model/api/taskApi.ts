@@ -7,8 +7,13 @@ export const taskApi = {
       const response = await apiService.get<Task[]>("/tasks");
       return response;
     } catch (error) {
-      console.error(error);
-      throw error;
+      if (error instanceof Error) {
+        console.error(error.message);
+        throw error;
+      } else {
+        console.error(error || "Undefined error");
+        throw new Error((error || "Undefined error") as string);
+      }
     }
   },
 
@@ -17,8 +22,13 @@ export const taskApi = {
       const response = await apiService.get<Task>(`/task/${id}`);
       return response;
     } catch (error) {
-      console.error(error);
-      throw error;
+      if (error instanceof Error) {
+        console.error(error.message);
+        throw error;
+      } else {
+        console.error(error || "Undefined error");
+        throw new Error((error || "Undefined error") as string);
+      }
     }
   },
 
@@ -27,8 +37,13 @@ export const taskApi = {
       const response = await apiService.post<{ id: string }>("/tasks", task);
       return response;
     } catch (error) {
-      console.error(error);
-      throw error;
+      if (error instanceof Error) {
+        console.error(error.message);
+        throw error;
+      } else {
+        console.error(error || "Undefined error");
+        throw new Error((error || "Undefined error") as string);
+      }
     }
   },
 
@@ -37,8 +52,13 @@ export const taskApi = {
       const response = await apiService.put<Task>(`/task/${id}`, task);
       return response;
     } catch (error) {
-      console.error(error);
-      throw error;
+      if (error instanceof Error) {
+        console.error(error.message);
+        throw error;
+      } else {
+        console.error(error || "Undefined error");
+        throw new Error((error || "Undefined error") as string);
+      }
     }
   },
 
@@ -47,8 +67,13 @@ export const taskApi = {
       const response = await apiService.delete<boolean>(`/task/${id}`);
       return response;
     } catch (error) {
-      console.error(error);
-      throw error;
+      if (error instanceof Error) {
+        console.error(error.message);
+        throw error;
+      } else {
+        console.error(error || "Undefined error");
+        throw new Error((error || "Undefined error") as string);
+      }
     }
   },
 };
